@@ -4,7 +4,14 @@ public class BinarySearchTree
 
     private int Compare (String s1, String s2)
     {
-        for (int i = 0; i < s1.length(); i++)
+        int a;
+
+        if (s1.length() > s2.length())
+            a = s2.length();
+        else
+            a = s1.length();
+            
+        for (int i = 0; i < a; i++)
         {
             if ((int)s1.charAt(i) < (int)s2.charAt(i))
             {

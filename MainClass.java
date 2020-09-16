@@ -15,7 +15,7 @@ public class MainClass
         String input = "";
         String token;
 
-        Pattern r = Pattern.compile("\\w+");
+        Pattern r = Pattern.compile("[A-Za-z]+");
         Matcher m;// = r.matcher(s);
 
         BinarySearchTree tree = new BinarySearchTree();
