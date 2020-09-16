@@ -6,19 +6,21 @@ import java.util.regex.Pattern;
 public class MainClass
 {
     private static Scanner kb = new Scanner (System.in);
+
+    private static FileReader f; //= new FileReader("input.txt");
+    private static BufferedReader b; // b = new BufferedReader(f);
+
+    private static String srcFileName = "";
+    private static String input = "";
+    private static String token;
+
+    private static Pattern r = Pattern.compile("[A-Za-z]+");
+    private static Matcher m;// = r.matcher(s);
+
+    private static BinarySearchTree tree = new BinarySearchTree();
+
     public static void main(String[] args) 
     {
-        FileReader f; //= new FileReader("input.txt");
-        BufferedReader b; // b = new BufferedReader(f);
-
-        String srcFileName = "";
-        String input = "";
-        String token;
-
-        Pattern r = Pattern.compile("[A-Za-z]+");
-        Matcher m;// = r.matcher(s);
-
-        BinarySearchTree tree = new BinarySearchTree();
 
         try
         {
@@ -47,6 +49,7 @@ public class MainClass
             tree.Inorder();
             f.close();
             b.close();
+
             BinarySearchTree.CleanTree(tree.root);
         }
         catch (FileNotFoundException e)

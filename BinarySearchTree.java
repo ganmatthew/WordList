@@ -1,6 +1,13 @@
+
+
 public class BinarySearchTree
 {
     Node root;
+
+    public BinarySearchTree ()
+    {
+        root = null;
+    }
 
     private int Compare (String s1, String s2)
     {
@@ -24,11 +31,6 @@ public class BinarySearchTree
         }
 
         return 0;
-    }
-
-    public BinarySearchTree ()
-    {
-        root = null;
     }
 
     public void Insert (String s)
@@ -68,8 +70,8 @@ public class BinarySearchTree
     {
         if (r == null)
             return;
-
         InorderRec(r.left);
+        //w.write(String.format("%-15s: %d\n", r.data, r.cnt));
         System.out.printf("%-15s: %d\n", r.data, r.cnt);
         InorderRec(r.right);
     }
