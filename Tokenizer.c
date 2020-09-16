@@ -82,7 +82,7 @@ String * Tokenize (char * InputString, int nWords)
         (PRINT_LOGS) ? (printf("\nArray is NULL!\n")) : printf(" ");
     }
 
-    Token = strtok(InputString, " ");
+    Token = InputString;
 
     while (Token != NULL)
     {
@@ -126,6 +126,7 @@ int readFile(String * strArray)
     {
         while (fscanf(src, "%s", inputStr) != EOF)
         {
+            (PRINT_LOGS) ? (printf("\nreading file token [%d]: %s\n", i, inputStr)) : printf(" ");
             strArray = Tokenize(inputStr, getNumWords(inputStr));
             i++;
         }
