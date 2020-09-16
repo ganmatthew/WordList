@@ -2,36 +2,33 @@
 #include <stdlib.h>
 #include <string.h>
 
+#define PRINT_LOGS 1
+typedef char String[50];
+
 #include "bst.h"
 #include "bst.c"
+#include "tokenizer.c"
 
 int main() {
-	
-	struct node *root;
-	
-	root = createNode("hello");
-	Insert(root, "how");
-	Insert(root, "are");
-    Insert(root, "you");
-    Insert(root, "today");
-    Insert(root, "fine");
-    Insert(root, "thank");
-    Insert(root, "you");
-    Insert(root, "how");
-    Insert(root, "about");
-    Insert(root, "you");
-    Insert(root, "today");
-    Insert(root, "is");
-    Insert(root, "the");
-    Insert(root, "present");
-    Insert(root, "tomorrow");
-    Insert(root, "is");
-    Insert(root, "a");
-    Insert(root, "gift");
-    
-    Inorder(root);
-    printf("\n");
-    
-    Delete(root);
-    return 0;
+    /*
+      TODO: Get string array to work with BST functionality
+    */
+    String * strArray; 
+    struct node * root;
+    int i;
+
+    if (readFile(strArray) != 0)
+    {
+        root = createNode(strArray[0]);
+        for (i = 1; i < sizeof(strArray); i++)
+        {
+            Insert(root, strArray[i]);
+        }
+        
+        Inorder(root);
+        printf("\n");
+        //Delete(root);
+    }
+    else
+        return 0;
 }

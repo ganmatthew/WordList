@@ -1,17 +1,29 @@
 struct node* createNode(char *key)
 {
-	struct node *newNode;
-	newNode = malloc(sizeof(struct node));
-	strcpy(newNode->data, key);
-	newNode->left_child = NULL;
-	newNode->right_child = NULL;
-	
-	return newNode;
+    struct node *newNode;
+    newNode = malloc(sizeof(struct node));
+    strcpy(newNode->data, key);
+    newNode->left_child = NULL;
+    newNode->right_child = NULL;
+    newNode->ctr = 0;
+
+    return newNode;
+}
+
+/*
+  TODO: Finish frequency counters
+*/
+void Count(struct node *rootNode, char *searchKey)
+{
+    if(strcmp(rootNode->data, searchKey)==0)
+    {
+        (rootNode->ctr)++;
+    }
 }
 
 struct node* Search(struct node *rootNode, char *key)
 {
-    if(rootNode==NULL || strcmp(rootNode->data, &*key)==0) //if rootNode->data is the one being searched then number is found
+    if(rootNode==NULL || strcmp(rootNode->data, &*key)==0)//if rootNode->data is the one being searched then number is found
         return rootNode;
         
     else if(strcmp(&*key, rootNode->data) < 0 ) // strcmp < 0 if first unmatched char is less than second, search the left subtree
@@ -37,7 +49,7 @@ void Inorder(struct node *rootNode)
     if (rootNode != NULL) 
     { 
         Inorder(rootNode->left_child); 
-        printf("%s \n", rootNode->data); 
+        (PRINT_LOGS) ? (printf("%dx\t%s\n", rootNode->ctr, rootNode->data)) : printf(" "); // checks PRINT_LOGS global setting
         Inorder(rootNode->right_child); 
     }
 } 
@@ -51,6 +63,7 @@ void Delete(struct node *rootNode)
     Delete(rootNode->left_child); 
     Delete(rootNode->right_child); 
   
-    printf("\n Deleting node: %s", rootNode->data); 
+    (PRINT_LOGS) ? (printf("\nDeleting node: %s", rootNode->data)) : printf(" "); // checks PRINT_LOGS global setting
+
     free(rootNode); 
 } 
