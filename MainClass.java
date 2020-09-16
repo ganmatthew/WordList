@@ -47,7 +47,7 @@ public class MainClass
             tree.Inorder();
             f.close();
             b.close();
-            CleanTree(tree.root);
+            BinarySearchTree.CleanTree(tree.root);
         }
         catch (FileNotFoundException e)
         {
