@@ -1,0 +1,12 @@
+about          : 1
+are            : 1
+fine           : 1
+gift           : 1
+hello          : 1
+how            : 2
+present        : 1
+thank          : 1
+the            : 1
+today          : 2
+tomorrow       : 1
+you            : 3

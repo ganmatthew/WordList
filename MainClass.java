@@ -1,23 +1,23 @@
 import java.io.*;
 import java.util.Scanner;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
+/**
+ * main driver class
+ */
 public class MainClass
 {
-    private static Scanner kb = new Scanner (System.in);
+    private static Scanner kb = new Scanner (System.in); // handles console input
 
-    private static FileReader f; //= new FileReader("input.txt");
-    private static BufferedReader b; // b = new BufferedReader(f);
+    private static FileReader f;
+    private static BufferedReader b;
+    private static Tokenizer t;
 
-    private static String srcFileName = "";
+    private static String srcFileName = ""; // empty name of file to read from
+    private static String destFileName = "WORDS.txt"; // name of file to write to
     private static String input = "";
     private static String token;
 
-    private static Pattern r = Pattern.compile("[A-Za-z]+");
-    private static Matcher m;// = r.matcher(s);
-
-    private static BinarySearchTree tree = new BinarySearchTree();
+    private static BinarySearchTree tree = new BinarySearchTree(); // creates a binary search tree
 
     public static void main(String[] args) 
     {
@@ -29,36 +29,23 @@ public class MainClass
 
             f = new FileReader(srcFileName);
             b = new BufferedReader(f);
+            t = new Tokenizer(b, token, input, tree);
+      
+            t.Tokenize(); // parses the input sentences into tokens
 
-            while ((input = b.readLine()) != null)
-            {
-                m = r.matcher(input);
-                while (m.find())
-                {
-                    token = m.group();
-                    if (token.length() >= 3)
-                    {
-                        tree.Insert(token.toLowerCase());
-                        //in.add(token.toLowerCase());
-                        //System.out.println(token.toLowerCase());
-                    }
-                    
-                }
-            }
-            
-            tree.Inorder();
-            f.close();
-            b.close();
+            tree.Write(destFileName); // sorts the BST and writes contents to an output file
+            f.close(); // closes the FileReader stream
+            b.close(); // closes the BufferedReader stream
 
-            BinarySearchTree.CleanTree(tree.root);
+            BinarySearchTree.Destroy(tree.root); // destroys and clears the BST
         }
-        catch (FileNotFoundException e)
+        catch (FileNotFoundException e) // goes here if the input file could not be found
         {
             System.out.println(srcFileName + " not found.");
         }
-        catch (IOException e)
+        catch (IOException e) // debugging purposes only
         {
-            System.out.println("Error in inputting / Closing.");
+            //System.out.println("Error in input or file closing.");
         }
         
     }
